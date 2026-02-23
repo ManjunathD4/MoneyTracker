@@ -35,6 +35,18 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		String email = null;
 		String jwt = null;
 		
+		String path = request.getServletPath();  
+		  // Public APIs
+	    if (path.equals("/login") ||
+	        path.equals("/register") ||
+	        path.equals("/health") ||
+	        path.equals("/status") ||
+	        path.equals("/activate")) {
+
+	        filterChain.doFilter(request, response);
+	        return;
+	    }
+		
 		//prevent from other request
 		if(authHeader != null && authHeader.startsWith("Bearer ")) {
 			jwt = authHeader.substring(7);
