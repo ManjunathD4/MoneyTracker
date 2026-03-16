@@ -26,7 +26,9 @@ import lombok.RequiredArgsConstructor;
 public class ProfileService {
 	
 	private final ProfileRepository profileRepository;
-	private final EmailService emailService;
+	private final EmailService emailServiceapi;
+	private final EmailServiceByPort emailServiceport;
+	
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationManager authenticationManager;
 	private final JWTUtil jwtUtil;
@@ -46,7 +48,10 @@ public class ProfileService {
 		String subject = "Activate Your Money Manager Account";
 		String body = "Click on the following link to activate your account:  "+activationLink;
 		
-		emailService.sendEmail(newProfile.getEmail(), subject, body);
+		emailServiceapi.sendEmailByAPI(newProfile.getEmail(), subject, body);
+		
+	//	emailServiceport.sendEmailbyPort(newProfile.getEmail(), subject, body);
+	
 		return toDTO(newProfile);
 	}
 	

@@ -20,24 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EmailService {
 
-	/*
-	 * private final JavaMailSender mailsender;
-	 * 
-	 * @Value("${brevo.api.key}") private String brevoApiKey;
-	 * 
-	 * @Value("${brevo.sender.email}") private String senderEmail;
-	 * 
-	 * @Value("${spring.mail.properties.mail.smtp.from}") private String fromEmail;
-	 * 
-	 * public void sendEmail(String to,String subject,String body) { try {
-	 * 
-	 * SimpleMailMessage message = new SimpleMailMessage();
-	 * message.setFrom(fromEmail); message.setTo(to); message.setSubject(subject);
-	 * message.setText(body); mailsender.send(message);
-	 * 
-	 * 
-	 * } catch (Exception e) { throw new RuntimeException(e.getMessage()); } }
-	 */
+	
+
 
 	
 	  @Value("${BREVO_API_KEY}") 
@@ -51,7 +35,7 @@ public class EmailService {
 	  
 	  private final RestTemplate restTemplate = new RestTemplate();
 	  
-	  public void sendEmail(String to, String subject, String body) { try { String
+	  public void sendEmailByAPI(String to, String subject, String body) { try { String
 	  url = "https://api.brevo.com/v3/smtp/email";
 	  
 	  HttpHeaders headers = new HttpHeaders(); 

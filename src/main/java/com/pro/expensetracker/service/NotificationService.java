@@ -36,7 +36,7 @@ public class NotificationService {
 					+"This is a friendly reminder to add your income and expenses for today in Money Manager.<br><br>"
 					+"<a href="+frontendurl+" style='display:inline-block;padding:10px 20px;background-color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;'>Go To Money Manager</a>"
 					+"<br><br>Best regards,<br>Money Manager Team";
-			emailService.sendEmail(profile.getEmail(), "Daily reminder: Add your income and expenses", body);
+			emailService.sendEmailByAPI(profile.getEmail(), "Daily reminder: Add your income and expenses", body);
 		}
 		
 	}
@@ -51,7 +51,7 @@ public class NotificationService {
 					+"This is a friendly reminder to add your income and expenses for today in Money Manager.<br><br>"
 					+"<a href="+frontendurl+" style='display:inline-block;padding:10px 20px;background-color:#fff;text-decoration:none;border-radius:5px;font-weight:bold;'>Go To Money Manager</a>"
 					+"<br><br>Best regards,<br>Money Manager Team";
-			emailService.sendEmail(profile.getEmail(), "Daily reminder: Add your income and expenses", body);
+			emailService.sendEmailByAPI(profile.getEmail(), "Daily reminder: Add your income and expenses", body);
 		}
 		
 	}
