@@ -24,7 +24,7 @@ public class EmailService {
 
 
 	
-	  @Value("${BREVO_API_KEY}") 
+	  @Value("${brevo_api}") 
 	  private String apiKey;
 	  
 	  @Value("${BREVO_FROM_MAIL}")
