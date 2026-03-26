@@ -44,7 +44,8 @@ public class ProfileService {
 		newProfile = profileRepository.save(newProfile);
 		
 		//activation email
-		String activationLink=activationURL+"/api/v1.0/activate?token="+newProfile.getActivationToken();
+		String activationLink=activationURL + "/activate?token=" 
+                + newProfile.getActivationToken();
 		String subject = "Activate Your Money Manager Account";
 		String body = "Click on the following link to activate your account:  "+activationLink;
 		
