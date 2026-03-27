@@ -1,0 +1,37 @@
+name: Deploy Money Tracker #title
+
+on:
+  push:
+    branches:
+      - master   #the branch name where repo is located it runs from this branch
+
+jobs:
+  deploy:       # Job name
+    runs-on: ubuntu-latest     # GitHub provides a  Ubuntu machine to run steps
+
+    steps:
+      - name: Checkout code     #gets code from branch
+        uses: actions/checkout@v3  #downloads repo in runner
+
+      - name: Setup Java         #install java
+        uses: actions/setup-java@v3  #action to install Java
+        with:                           #specifications
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build project                 #Builds code
+        run: mvn clean package -DskipTests   #Compile code + create JAR, skip tests
+
+      - name: Deploy to Server                #delpying to server
+        uses: appleboy/ssh-action@v1.0.0  #connects to virtual private server
+        with:
+          host: ${{ secrets.SERVER_IP }}           #server ip from secreat key
+          username: root                            #login name
+          password: ${{ secrets.SERVER_PASSWORD }}  #password
+          script: |                                       # Commands executed on  server
+            cd ~/MoneyTracker || git clone hhttps://github.com/ManjunathD4/MoneyTracker.git ~/MoneyTracker   
+            cd ~/MoneyTracker
+            git pull
+            mvn clean package -DskipTests
+            pkill -f "java -jar" || true
+            nohup java -jar target/*.jar > app.log 2>&1 &
