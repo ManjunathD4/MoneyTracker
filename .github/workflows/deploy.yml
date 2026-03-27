@@ -29,9 +29,11 @@ jobs:
           username: root                            #login name
           password: ${{ secrets.SERVER_PASSWORD }}  #password
           script: |                                       # Commands executed on  server
+            set -e   
             cd ~/MoneyTracker || git clone https://github.com/ManjunathD4/MoneyTracker.git ~/MoneyTracker   
             cd ~/MoneyTracker
             git pull
+            export $(grep -v '^#' .env | xargs)
             mvn clean package -DskipTests
             pkill -f "java -jar" || true
             nohup java -jar target/*.jar > app.log 2>&1 &
