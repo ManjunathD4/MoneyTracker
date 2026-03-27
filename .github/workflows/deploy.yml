@@ -29,7 +29,7 @@ jobs:
           username: root                            #login name
           password: ${{ secrets.SERVER_PASSWORD }}  #password
           script: |                                       # Commands executed on  server
-            cd ~/MoneyTracker || git clone hhttps://github.com/ManjunathD4/MoneyTracker.git ~/MoneyTracker   
+            cd ~/MoneyTracker || git clone https://github.com/ManjunathD4/MoneyTracker.git ~/MoneyTracker   
             cd ~/MoneyTracker
             git pull
             mvn clean package -DskipTests
