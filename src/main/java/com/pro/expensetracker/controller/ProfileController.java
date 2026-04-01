@@ -23,7 +23,11 @@ public class ProfileController {
 	private final ProfileService profileService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<ProfileDTO> registerProfile(@RequestBody ProfileDTO profileDTO){
+	public ResponseEntity<?> registerProfile(@RequestBody ProfileDTO profileDTO){
+		if(profileService.UserExist(profileDTO.getEmail())) {
+			return	ResponseEntity.status(HttpStatus.CONFLICT)
+	        .body("User already exists. Please login.");
+		}
 		ProfileDTO registeredProfile=profileService.registerProfile(profileDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(registeredProfile);
 	}

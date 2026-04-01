@@ -143,4 +143,8 @@ public class ProfileService {
 		}
 	}
 	
+	public boolean UserExist(String email) {
+		return profileRepository.existsByEmail(email);
+	}
+	
 }
